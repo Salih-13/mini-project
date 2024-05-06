@@ -1,0 +1,77 @@
+/* Signupform.css */
+.heading h1{
+  font-weight: 500;
+  margin-left: 1280px;
+  margin-top: 120px;
+
+}
+
+.image {
+  position: absolute;
+  height: 120%;
+  width: 90%;
+  margin-left: 1800px;
+  margin-top: 200px;
+}
+
+.signupcontainer {
+  position: absolute;
+  top: 200px; /* Adjust as needed */
+  right: 150px; /* Adjust as needed */
+  border-radius: 10px;
+  height: 720px;
+  width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background-color: rgba(249,250,251,255);
+  padding: 20px;
+}
+
+.signupcontainer label {
+  display: block;
+  font: bolder;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.signupcontainer input,
+.signupcontainer select {
+  width: 100%;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: border-color 0.3s ease;
+  padding: 5px 10px;
+}
+
+.signupcontainer input:focus,
+.signupcontainer select:focus {
+  border-color: #007bff;
+}
+
+.errorMsg,
+.errorMsgdob {
+  color: red;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  bottom: px; 
+  top: 100%;
+  left: 20px;
+  white-space: nowrap;
+}
+
+.signupcontainer input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.signupcontainer input[type="submit"]:hover {
+  background-color: #0056b3;
+}

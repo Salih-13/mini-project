@@ -1,0 +1,163 @@
+ .image1{
+    border-radius: 10px; /* Adjust the value to change the amount of curvature */
+    overflow: hidden; /* This ensures that the image is clipped to the rounded corners */
+    width: 1650px; /* Adjust the width to your desired size */
+    height:400px;
+    position: relative;
+    margin-right: 15%;
+    margin-top:8%
+    
+    
+}
+
+
+  
+  .search-bar {
+    margin-right: 80px;
+    width: 90px;
+    position: absolute;
+    bottom: 340px;
+    right: 140px;
+    display: flex;
+  }
+  
+  .search-bar input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+ 
+  
+  .search button {
+    
+    width: 90px;
+    height: 35px;
+    background-color: #007bff; /* Change color as needed */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search button:hover {
+    background-color: #0056b3; /* Change color as needed */
+  }
+  
+.home{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(198, 212, 212);
+    }
+
+    .categories p{
+        font-size: 25px;
+        font: bolder;
+        font-weight: 500;
+        color: black;
+        margin-top: 80px;
+        text-align: left;
+        margin-left: 20px;
+       
+    }
+
+    .category-list {
+        display: flex;
+    }
+    
+    .image-container1,
+    .image-container2,
+    .image-container3,
+    .image-container4,
+    .image-container5,
+    .image-container6 {
+        margin-right: 90px; /* Adjust margin as needed */
+    }
+    
+    .image-container1 img,
+    .image-container2 img,
+    .image-container3 img,
+    .image-container4 img,
+    .image-container5 img ,
+    .image-container6 img {
+        border-radius: 20px;
+        overflow: hidden;
+        height: 200px;
+        width: 200px;
+        transition: transform 0.5s;
+    }
+    
+    /* .image-container1 img:hover,
+.image-container2 img:hover,
+.image-container3 img:hover,
+.image-container4 img:hover,
+.image-container5 img:hover,
+.image-container6 img:hover {
+    transform: rotateY(360deg);  Rotate 360 degrees around the Y axis 
+}
+*/
+
+   
+    
+    .image-container1:hover .overlay-text1,
+    .image-container2:hover .overlay-text2, 
+    .image-container3:hover .overlay-text3,
+    .image-container4:hover .overlay-text4,
+    .image-container5:hover .overlay-text5,
+    .image-container6:hover .overlay-text6{
+        opacity: 1;
+        transform: translateY(0);
+        
+    }
+
+    .overlay-text6,
+    .overlay-text5,
+    .overlay-text4,
+    .overlay-text3,
+    .overlay-text2,
+    .overlay-text1 {
+        position: absolute;
+        width: 200px;
+        background-color: rgba(0, 0, 0, 0.7); /* Transparent black background */
+        color: white; /* White text color */
+        font-weight: 700;
+        background-color: none; 
+        color: rgb(253, 252, 252);
+        padding: 10px;
+        opacity: 0;
+        transform: translateY(100%); /* Initially hide the text below the image */
+        transition: opacity 0.3s, transform 0.3s;
+        bottom: 80px; /* Position the text 10px from the bottom of the image */
+        
+    }
+    
+    .overlay-text1 {
+       left: 120px; /* Position the text 10px from the left of the image */
+       }
+
+    .overlay-text2 {
+       left: 410px; /* Position the text 10px from the left of the image */
+        }
+
+    .overlay-text3 {
+         left: 700px; /* Position the text 10px from the left of the image */
+       }
+
+    .overlay-text4 {
+        left: 990px; /* Position the text 10px from the left of the image */
+       }
+
+    .overlay-text5 {
+        left: 1280px; /* Position the text 10px from the left of the image */
+       }
+    
+   
+    
+ 
+    
+ 
+
+  
+
+    
+    
+    

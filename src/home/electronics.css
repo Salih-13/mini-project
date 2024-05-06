@@ -1,0 +1,41 @@
+.book{
+    
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(198, 212, 212);
+}
+
+
+
+
+.upload{
+    display: inline-block;
+width: 60px;
+height: 60px;
+margin-top: 700px;
+margin-left: 1500px;
+}
+
+.upload h1{
+    margin-left:1550px ;
+    margin-top: 640px;
+}
+.upload button{
+    background-color: black;
+    height: 70px;
+    width: 220px;
+    margin-left: 10px;
+}
+
+
+.image-list p{
+    margin-left: -1600px;
+}
+
+
+.image-list img{
+  
+   margin-top: 100px;
+   margin-left: -1600px;
+}
+

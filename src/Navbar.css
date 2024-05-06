@@ -1,0 +1,20 @@
+
+.name h1{
+    font-weight: 800;
+    margin-left: 40%;
+
+}
+
+.logo{
+    margin-left: 39%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin-right: 0;
+    padding: 0;
+  }
+
+  .navbar{
+    color: rgb(14, 14, 13);
+  }
+ 

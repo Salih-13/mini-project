@@ -1,0 +1,10 @@
+.profile{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(198, 212, 212);
+    }
+
+.profile-details{
+    margin-top: 200px;
+    margin-left: 100px;
+}

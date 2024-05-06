@@ -1,25 +1,51 @@
-import logo from './logo.svg';
 import './App.css';
-
+import {BrowserRouter,Link,Route,Routes } from 'react-router-dom';
+import Signin from './Signin';
+import Signupform from './Signupform';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+import Explore from './Explore';
+import Home from './Home';
+import Profile from './Profile'
+import Books from './home/Books'
+import Message from './Message';
+import Electronics from './home/Electronics';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <div className='app'>
+    <BrowserRouter>
+    <Navbar/>
+    <Routes>
+    <Route path='/' element={<Signin />}/>
+    <Route path='/signup' element={<Signupform />}/>
+    <Route path="/home" element= {<Home/>}/> 
+    <Route path='/profile' element={<Profile/>}/>
+    <Route path='/explore/*' element={<ExploreWithSidebar />} />
+    <Route path='/books' element={<Books/>}/>
+    <Route path='/electronics' element={<Electronics/>}/>
+    <Route path='/messages' element={<Message/>}/>
+    </Routes>
+    </BrowserRouter>
+    </div>);
+  }
+
+  function ExploreWithSidebar() {
+    return (
+      <div>
+        <Sidebar />
+        <Explore />
+      </div>
+    );
+  }
+
+  function HomeWithSidebar() {
+    return (
+      <div>
+        
+        <Sidebar />
+        <Home />
+      </div>
+    );
+  }
 
 export default App;
