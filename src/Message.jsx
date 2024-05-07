@@ -1,13 +1,13 @@
 import React from 'react'
-import Sidebar from './Sidebar1'
-import Chat from './Chat'
+import Sidebar from './Sidebar'
+
 
 const Message = () => {
   return (
     <div className='home'>
       <div className="container">
         <Sidebar/>
-        <Chat/>
+        
       </div>
     </div>
   )

@@ -38,7 +38,9 @@ const Home = () => {
             <div className="overlay-text1">Books </div>
           </div>
           <div className='image-container2'>
+            <Link to="/electronics">
             <img src='./electronics.jpg' alt='electronics' />
+            </Link>
             <div className="overlay-text2">Electronics</div>
           </div>
           <div className='image-container3'>

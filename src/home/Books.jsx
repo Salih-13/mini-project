@@ -22,17 +22,29 @@ const Books = () => {
   const [books, setBooks] = useState([]);
   const [files, setFiles] = useState([]);
 
-
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
+
+  const handleUserChange = (event) => {
+    setUser(event.target.value);
+  };
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
 
   useEffect(() => {
     const unsubscribeBooks = onSnapshot(collection(db, "Books"), (querySnapshot) => {
       const fetchedBooks = [];
       querySnapshot.forEach((doc) => {
         const bookData = doc.data();
-        fetchedBooks.push({ id: doc.id, ...bookData });
+        const { description, link, user } = bookData; // Destructure necessary fields
+        console.log("Description:", description);
+        console.log("Link:", link);
+        console.log("User:", user);
+        fetchedBooks.push({ id: doc.id, description, link, user });
       });
       setBooks(fetchedBooks);
     });
@@ -60,7 +72,7 @@ const Books = () => {
   }, []);
 
   const handleUpload = async () => {
-    if (selectedFile) {
+    if (selectedFile && user && description) {
       const storageRef = ref(storage, `books/${selectedFile.name}`);
       const uploadTask = uploadBytesResumable(storageRef, selectedFile);
       uploadTask.on(
@@ -96,19 +108,18 @@ const Books = () => {
   return (
     <div className="book">
       <Sidebar />
-      
       <h1>Books</h1>
       <div className="upload">
         <h1>Add More </h1>
+        <input type="text" placeholder="User Name" onChange={handleUserChange} />
+        <input type="text" placeholder="Description" onChange={handleDescriptionChange} />
         <input type="file" onChange={handleFileChange} />
-         <button type="submit" onClick={handleUpload}>
+        <button type="submit" onClick={handleUpload}>
           <FontAwesomeIcon icon={faPlus} /> Upload
         </button>
-       </div>
-       
+      </div>
       <h1>Books</h1>
       <div className="book-list">
-       
         <ul>
           {books.map((book) => (
             <li key={book.id}>{book.title}</li>
@@ -116,19 +127,17 @@ const Books = () => {
         </ul>
       </div>
       <div className="file-list">
-      
         <div className="image-list">
-          {files.map((file, index) => (
-            <div key={index} className="image-item">
-              <img src={file.downloadURL} alt={file.name} />
-              <p>Uploaded by: {file.username}</p> {/* Display username */}
-             
+          {books.map((book) => (
+            <div className="image-item">
+              <img src={book.link} />
+              <p>Uploaded by: {book.user}</p> {/* Display username */}
+              <p>Description: {book.description}</p>
             </div>
           ))}
         </div>
       </div>
     </div>
-   
   );
 };
 

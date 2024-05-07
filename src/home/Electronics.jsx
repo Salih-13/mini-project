@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { storage } from "../Firebase";
 import Sidebar from "../Sidebar";
-import "./books.css";
+import "./electronics.css"; // Assuming specific styles for electronics
 
 import { addDoc, collection, onSnapshot } from "firebase/firestore";
 import {
@@ -19,7 +19,7 @@ const Electronics = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [description, setDescription] = useState("");
   const [user, setUser] = useState("");
-  const [books, setBooks] = useState([]);
+  const [electronics, setElectronics] = useState([]);
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (event) => {
@@ -27,18 +27,18 @@ const Electronics = () => {
   };
 
   useEffect(() => {
-    const unsubscribeBooks = onSnapshot(collection(db, "Electronics"), (querySnapshot) => {
-      const fetchedBooks = [];
+    const unsubscribeElectronics = onSnapshot(collection(db, "Electronics"), (querySnapshot) => {
+      const fetchedElectronics = [];
       querySnapshot.forEach((doc) => {
-        const bookData = doc.data();
-        fetchedBooks.push({ id: doc.id, ...bookData });
+        const electronicsData = doc.data();
+        fetchedElectronics.push({ id: doc.id, ...electronicsData });
       });
-      setBooks(fetchedBooks);
+      setElectronics(fetchedElectronics);
     });
 
     const fetchFiles = async () => {
       try {
-        const storageRef = ref(storage, 'electronics'); // Use 'electronics' folder
+        const storageRef = ref(storage, 'electronics');
         const fileList = await listAll(storageRef);
         const fileURLs = await Promise.all(fileList.items.map(async (item) => {
           const downloadURL = await getDownloadURL(item);
@@ -54,13 +54,13 @@ const Electronics = () => {
 
     // Clean up the listeners when the component unmounts
     return () => {
-      unsubscribeBooks();
+      unsubscribeElectronics();
     };
   }, []);
 
   const handleUpload = async () => {
     if (selectedFile) {
-      const storageRef = ref(storage, `electronics/${selectedFile.name}`); // Upload to 'electronics' folder
+      const storageRef = ref(storage, `electronics/${selectedFile.name}`);
       const uploadTask = uploadBytesResumable(storageRef, selectedFile);
       uploadTask.on(
         "state_changed",
@@ -75,15 +75,19 @@ const Electronics = () => {
         async () => {
           try {
             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-            const collectionRef = collection(db, "Electronics"); // Use 'Electronics' collection
+            const collectionRef = collection(db, "Electronics");
             await addDoc(collectionRef, {
               user,
               description,
-              link: downloadURL,
+              imageUrl: downloadURL, // Use imageUrl instead of link
             });
-            console.log("File uploaded and electronics item added successfully.");
+            console.log("File uploaded and electronics added successfully.");
+            // Clear input fields after successful upload
+            setSelectedFile(null);
+            setDescription("");
+            setUser(""); // Clear user information if needed
           } catch (error) {
-            console.error("Error adding electronics item:", error);
+            console.error("Error adding electronics:", error);
           }
         }
       );
@@ -93,48 +97,40 @@ const Electronics = () => {
   };
 
   return (
-    <div className="book">
+    <div className="electronics">
       <Sidebar />
+      
       <h1>Electronics</h1>
       <div className="upload">
-        <h1>Add More </h1>
+        <h1>Add More</h1>
         <input type="file" onChange={handleFileChange} />
-        <button type="submit" onClick={handleUpload}>
-          <FontAwesomeIcon icon={faPlus} /> Upload
-        </button>
-        <input
-          type="text"
+        <textarea
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        {/* Assuming 'user' state holds the username */}
-        {/* This input can be replaced with your user authentication mechanism */}
-        <input
+        {/* Optionally add user input field */}
+        {/* <input
           type="text"
-          placeholder="Username"
+          placeholder="User"
           value={user}
           onChange={(e) => setUser(e.target.value)}
-        />
+        /> */}
+        <button type="submit" onClick={handleUpload}>
+          <FontAwesomeIcon icon={faPlus} /> Upload
+        </button>
       </div>
-      <h1></h1>
-      <div className="book-list">
+       
+      <div className="electronics-list">
         <ul>
-          {books.map((book) => (
-            <li key={book.id}>{book.title}</li>
+          {electronics.map((item) => (
+            <li key={item.id}>
+              <img src={item.imageUrl} alt={item.name} />
+              <p>Description: {item.description}</p>
+              <p>Uploaded by: {item.user}</p>
+            </li>
           ))}
         </ul>
-      </div>
-      <div className="file-list">
-        <div className="image-list">
-          {files.map((file, index) => (
-            <div key={index} className="image-item">
-              <img src={file.downloadURL} alt={file.name} />
-              <p>Uploaded by: {file.username}</p>
-              <p>Description: {file.description}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
