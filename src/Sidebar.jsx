@@ -41,8 +41,8 @@ const Sidebar = ({ children }) => {
 
   const menuItems = [
     { path: "/home", name: "Home", icon: <FaHome size={30} /> },
-    { path: "/explore", name: "Explore", icon: <FaSearchengin size={30} /> },
-    { path: "/messages", name: "Message", icon: <FaCommentAlt size={30} /> },
+   { path: "/explore", name: "Explore", icon: <FaSearchengin size={30} /> },
+    { path: "/chathome", name: "Chat", icon: <FaCommentAlt size={30} /> },
     { path: "/profile", name: "Profile", icon: <FaShoppingBag size={30} /> },
     { path: "/signout", name: "Signout", icon: <FaSignOutAlt size={30} />, onClick: handleLogout }
   ];

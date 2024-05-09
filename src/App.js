@@ -8,8 +8,8 @@ import Explore from './Explore';
 import Home from './Home';
 import Profile from './Profile'
 import Books from './home/Books'
-import Message from './Message';
 import Electronics from './home/Electronics';
+import ChatHome from './ChatHome'
 function App() {
   return (
     <div className='app'>
@@ -23,7 +23,9 @@ function App() {
     <Route path='/explore/*' element={<ExploreWithSidebar />} />
     <Route path='/books' element={<Books/>}/>
     <Route path='/electronics' element={<Electronics/>}/>
-    <Route path='/messages' element={<Message/>}/>
+    <Route path='/chathome' element={<ChatHome/>}/>
+    <Route path="/chat-home/:receiverId" element={<ChatHome />} />
+
     </Routes>
     </BrowserRouter>
     </div>);
@@ -48,4 +50,5 @@ function App() {
     );
   }
 
+  
 export default App;

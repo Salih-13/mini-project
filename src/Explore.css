@@ -1,0 +1,5 @@
+.explore{
+    justify-content: flex-start;
+    display:flex;
+    flex-direction:row;
+}

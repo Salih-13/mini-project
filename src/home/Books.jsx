@@ -129,7 +129,7 @@ const Books = () => {
       <div className="file-list">
         <div className="image-list">
           {books.map((book) => (
-            <div className="image-item">
+            <div className="image-item" key={book.id}> {/* Assign unique key */}
               <img src={book.link} />
               <p>Uploaded by: {book.user}</p> {/* Display username */}
               <p>Description: {book.description}</p>
